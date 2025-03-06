@@ -1,0 +1,6 @@
+show=dmenu
+layer=overlay
+width=60%
+height=50%
+allow_images=true
+prompt=clipboard
