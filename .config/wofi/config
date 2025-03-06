@@ -1,0 +1,9 @@
+show=drun
+width=50%
+height=50%
+normal_window=false
+always_parse_args=true
+show_all=false
+insensitive=true
+allow_images=true
+columns=2

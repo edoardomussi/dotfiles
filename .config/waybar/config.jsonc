@@ -1,0 +1,162 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    // "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 6, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+	"hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+	"idle_inhibitor",
+        "pulseaudio",
+	"bluetooth",
+        "network",
+        "backlight",
+	"power-profiles-daemon",
+        "battery",
+        "battery#bat2",
+        "custom/power"
+    ],
+
+    //Modules configuration
+    "hyprland/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": false,
+         "warp-on-scroll": true,
+         "format": "{name}"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+	    "icon": true,
+	    "icon-size": 18,
+	    "rewrite": {
+	        "(.*)firefox": "$1",
+	        "(.*) - NVIM": "  $1"
+	    },
+	    "separate-outputs": true
+    },
+ 
+    "clock": {
+        "format": "{:%H:%M - %A, %d/%m/%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    },
+    
+    "idle_inhibitor": {
+        "format": "{icon}",
+	"format-icons": {
+	    "activated": "󰈈 ",
+	    "deactivated": "󰈉 "
+        }
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "brightnessctl -s set +1%",
+        "on-scroll-down": "brightnessctl -s set 1%-",
+        "tooltip": false
+    },
+    
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "],
+	"tooltip": true,
+	"tooltip-format": "{timeTo}\nPower consumption: {power}W"
+    },
+    
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ipaddr}/{cidr}  ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "format-disabled": "Wifi Off",
+        "tooltip": false,
+	"on-click": "kitty --class float -e nmtui"
+    },
+    
+    "bluetooth": {
+	"format": "󰂯 {status}",
+	"format-connected": "󰂯 {num_connections} device(s)",
+	"format-disabled": "󰂲 {status}",
+	"tooltip": "true",
+	"tooltip-format": "{num_connections} connected device(s)",
+	"tooltip-format-connected": "{num_connections} connected devices\n\n{device_enumerate}",
+    "tooltip-format-disabled": "",
+	"tooltip-format-enumerate-connected": "{device_alias}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}% 󰁹",
+	"on-click": "rfkill toggle bluetooth",
+	"on-click-right": "blueman-manager"
+	
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+  }
+}
