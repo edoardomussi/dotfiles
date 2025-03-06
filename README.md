@@ -1,3 +1,3 @@
-#Dotfiles repository for my Arch/Hyprland configuration
+# Dotfiles repository for my Arch/Hyprland configuration
 
-##Should be GNU Stow Compatible (hopefully)
+## Should be GNU Stow Compatible (hopefully)
