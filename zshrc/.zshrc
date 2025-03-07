@@ -17,7 +17,10 @@ setopt autocd extendedglob
 # End of lines configured by zsh-newuser-install
 
 # Spaceship configuration
-eval "$(starship init zsh)"
+if test "$TERM" != "linux"; then
+  eval "$(starship init zsh)"
+fi
+#eval "$(starship init zsh)"
 
 bindkey "^[[3~" delete-char
 alias la="ls -la"

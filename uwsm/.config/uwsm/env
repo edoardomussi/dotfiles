@@ -26,7 +26,7 @@ export GDK_SCALE=1
 export MOZ_ENABLE_WAYLAND=1
 
 # Cursor size
-#export HYPRCURSOR_THEME=breeze_cursors
-#export HYPRCURSOR_SIZE=24
+export HYPRCURSOR_THEME=Breeze
+export HYPRCURSOR_SIZE=24
 #export XCURSOR_THEME=rose-pine-hyprcursor
 #export XCURSOR_SIZE=24
