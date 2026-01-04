@@ -1,13 +1,17 @@
 {
     "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "margin-top": 6,
+    "margin-left": 6,
+    "margin-right": 6,
+    "margin-bottom": 0,
+    // "position": "bottom", // Waybar position (top|bottom|left|righ)
     // "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 6, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-	"hyprland/window"
+	    "hyprland/window"
     ],
     "modules-center": [
         "clock"
@@ -28,18 +32,14 @@
     "hyprland/workspaces": {
          "disable-scroll": true,
          "all-outputs": false,
-         "warp-on-scroll": true,
-         "format": "{name}"
+         "wrap-on-scroll": true,
+         "format": "{id}"
     },
 
     "hyprland/window": {
         "format": "{}",
 	    "icon": true,
-	    "icon-size": 18,
-	    "rewrite": {
-	        "(.*)firefox": "$1",
-	        "(.*) - NVIM": "  $1"
-	    },
+	    "icon-size": 24,
 	    "separate-outputs": true
     },
  
@@ -49,11 +49,11 @@
     },
     
     "idle_inhibitor": {
-        "format": "{icon}",
-	"format-icons": {
-	    "activated": "󰈈 ",
-	    "deactivated": "󰈉 "
-        }
+      "format": "{icon}",
+	    "format-icons": {
+	      "activated": "󰈈 ",
+	      "deactivated": "󰈉 "
+      }
     },
 
     "backlight": {
@@ -73,7 +73,7 @@
         },
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
@@ -102,42 +102,41 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%)  ",
-        "format-ethernet": "{ipaddr}/{cidr}  ",
-        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-ethernet": "{ipaddr}/{cidr}  ",
+        "tooltip-format": "Device {ifname} connected @ {gwaddr}",
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "Disconnected ⚠ ",
         "format-disabled": "Wifi Off",
-        "tooltip": false,
+        "tooltip": true,
 	"on-click": "kitty --class float -e nmtui"
     },
     
     "bluetooth": {
-	"format": "󰂯 {status}",
-	"format-connected": "󰂯 {num_connections} device(s)",
-	"format-disabled": "󰂲 {status}",
-	"tooltip": "true",
-	"tooltip-format": "{num_connections} connected device(s)",
-	"tooltip-format-connected": "{num_connections} connected devices\n\n{device_enumerate}",
-    "tooltip-format-disabled": "",
-	"tooltip-format-enumerate-connected": "{device_alias}",
-	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}% 󰁹",
-	"on-click": "rfkill toggle bluetooth",
-	"on-click-right": "blueman-manager"
-	
+	    "format": "󰂯 {status}",
+	    "format-connected": "󰂯 {num_connections} device(s)",
+	    "format-disabled": "󰂲 {status}",
+	    "tooltip": "true",
+	    "tooltip-format": "{num_connections} connected device(s)",
+	    "tooltip-format-connected": "{num_connections} connected devices\n\n{device_enumerate}",
+      "tooltip-format-disabled": "",
+	    "tooltip-format-enumerate-connected": "{device_alias}",
+	    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}% 󰁹",
+	    "on-click": "rfkill toggle bluetooth",
+	    "on-click-right": "blueman-manager"
     },
 
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
-            "headset": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",

@@ -1,36 +1,36 @@
 {
     "label" : "lock",
-    "action" : "hyprctl keyword exec loginctl lock-session",
+    "action" : "loginctl lock-session",
     "text" : "Lock",
     "keybind" : "l"
 }
 {
     "label" : "hibernate",
-    "action" : "hyprctl keyword exec systemctl hibernate",
+    "action" : "systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
 {
     "label" : "logout",
-    "action" : "hyprctl keyword exec loginctl terminate-user $USER",
+    "action" : "uwsm stop",
     "text" : "Logout",
     "keybind" : "e"
 }
 {
     "label" : "shutdown",
-    "action" : "hyprctl keyword exec systemctl poweroff",
+    "action" : "systemd-run --user --remain-after-exit sh -c 'uwsm stop; systemctl poweroff'",
     "text" : "Shutdown",
     "keybind" : "s"
 }
 {
     "label" : "suspend",
-    "action" : "hyprctl keyword exec systemctl suspend",
+    "action" : "systemctl suspend",
     "text" : "Suspend",
     "keybind" : "u"
 }
 {
     "label" : "reboot",
-    "action" : "hyprctl keyword exec systemctl reboot",
+    "action" : "systemd-run --user --remain-after-exit sh -c 'uwsm stop; systemctl reboot'",
     "text" : "Reboot",
     "keybind" : "r"
 }
